@@ -1,0 +1,11 @@
+<ol class="list-group page-list view-pages-by-tag"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns="http://www.w3.org/1999/xhtml"
+	t:type="Any" t:mixins="rss/AddRssLink" t:context="['tag', tag.name]">
+	
+	<li class="list-group-item" t:type="Loop" t:source="pages" t:value="page" 
+		t:mixins="AddCssClassesFromTags" t:tags="page.tags">
+		<div t:type="ViewPage" t:page="page" t:teaser="true"/>
+	</li>
+	
+</ol>

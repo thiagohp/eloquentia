@@ -1,0 +1,16 @@
+<html t:type="Layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="tapestry:parameter"
+	t:siteName="literal:Eloquentia"
+	t:title="literal:List pages">
+	<table t:type="Grid" t:source="source" t:row="page" t:exclude="id, content, teaser">
+		<p:titleCell>
+			<a href="#" t:type="PageLink" t:page="page/edit" t:context="context">${page.title}</a>
+		</p:titleCell>
+	</table>
+	<div>
+		<p>
+			<a href="#" t:type="PageLink" t:page="page/edit">${message:eloquentia.create-new-page}</a>
+		</p>
+	</div>
+</html>

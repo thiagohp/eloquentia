@@ -1,0 +1,70 @@
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+div.page-header {
+	border: none;
+}
+
+ol.list-group-item:odd {
+	background-color: #222222;
+}
+
+div.after-navbar {
+	clear: both;
+	margin-top: 50px;
+	background-color: yellow;
+}
+
+.view-pages-by-tag article header p {
+	font-size: 0.8em;
+}
+
+footer span {
+	border-top: black solid 1px;
+}
+
+body footer {
+	width: 100%;
+	border-top: black solid 1px;
+	margin-top: 3em;
+	margin-left: 0px;
+	margin-right: 0px;
+	text-align: center;
+	background-color: black;
+	color: #999999;
+}
+
+body footer a {
+	color: white;
+}
+
+body footer h4 {
+	font-size: 1em;
+}
+
+div.powered-by {
+	text-align: inherit;
+}
+
+div.page-info p {
+	display: inline;
+}
+
+ol.tag-list {
+	display: inline;
+	clear: none;
+	padding-left: 0em;
+}
+
+ol.tag-list li {
+	display: inline;
+	list-style-type: none;
+	margin-left: 0.4em;
+	font-size: 0.8em;
+}
+
+article div.content {
+	margin-top: 2em;
+}

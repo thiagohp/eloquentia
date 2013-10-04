@@ -1,0 +1,16 @@
+<html t:type="Layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="tapestry:parameter"
+	t:siteName="literal:Eloquentia"
+	t:title="literal:List tags">
+	<table t:type="Grid" t:source="source" t:row="tag" t:exclude="id, links">
+		<p:nameCell>
+			<a href="#" t:type="PageLink" t:page="tag/edit" t:context="tag.name">${tag.name}</a>
+		</p:nameCell>
+	</table>
+	<div>
+		<p>
+			<a href="#" t:type="PageLink" t:page="tag/edit">${message:eloquentia.create-new-tag}</a>
+		</p>
+	</div>
+</html>
