@@ -4,7 +4,7 @@
 	t:type="Any" t:mixins="rss/AddRssLink" t:context="['tag', tag.name]">
 	
 	<li class="list-group-item" t:type="Loop" t:source="pages" t:value="page" 
-		t:mixins="AddCssClassesFromTags" t:tags="page.tags">
+		t:mixins="AddCssFromTags" t:tags="page.tags">
 		<div t:type="ViewPage" t:page="page" t:teaser="true"/>
 	</li>
 	

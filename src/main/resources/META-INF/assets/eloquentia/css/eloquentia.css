@@ -68,3 +68,7 @@ ol.tag-list li {
 article div.content {
 	margin-top: 2em;
 }
+
+textarea#css {
+	height: 10em;
+}

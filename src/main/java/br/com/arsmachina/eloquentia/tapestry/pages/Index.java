@@ -82,4 +82,8 @@ public class Index {
 		return page;
 	}
 	
+	public String getCssClass() {
+		return page != null ? "pageView" : "tagView";
+	}
+	
 }

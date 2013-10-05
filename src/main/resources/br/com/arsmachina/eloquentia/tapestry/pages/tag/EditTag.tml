@@ -1,7 +1,7 @@
 <html t:type="Layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns="http://www.w3.org/1999/xhtml"
 	t:siteName="literal:Eloquentia"
-	t:title="literal:Edit page">
+	t:title="message:eloquentia.edit-tag">
 	<h2>${message:eloquentia.edit-tag}</h2>
 	<div>
 		<form t:type="Form" t:id="form" validate="tag">
@@ -11,6 +11,7 @@
 			<input type="textfield" t:type="TextField" t:id="title" t:value="tag.title" t:mixins="FormGroup"/>
 			<input type="textfield" t:type="TextField" t:id="subtitle" t:value="tag.subtitle" t:mixins="FormGroup"/>
 			<input type="textfield" t:type="Checkbox" t:id="subdomain" t:value="tag.subdomain" t:mixins="FormGroup"/>
+			<textarea t:type="TextArea" t:id="css" t:value="tag.css" t:mixins="FormGroup"/>
 			<input type="submit" id="submit"/>
 		</form>
 	</div>

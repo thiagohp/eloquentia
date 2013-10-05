@@ -4,7 +4,8 @@
 	t:siteName="mainTag.title"
 	t:title="title"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-	xmlns="http://www.w3.org/1999/xhtml">
+	xmlns="http://www.w3.org/1999/xhtml"
+	class="${cssClass}">
 	
 	<t:if t:test="page">
 		<div t:type="ViewPage" t:page="page" t:teaser="false"/>

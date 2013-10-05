@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-	xmlns="http://www.w3.org/1999/xhtml">
+	xmlns="http://www.w3.org/1999/xhtml" class="${cssClass}">
 	<head>
 		<link rel="shortcut icon" href="${context:/favicon.png}" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link t:type="" rel="bookmark" href="URL" />
+<!-- 		<link t:type="" rel="bookmark" href="URL" /> -->
 		<title>${title}</title>
 	</head>
-	<body t:type="Any" t:mixins="AddCssClassesFromTags" t:tags="tag.name">
+	<body t:type="Any" t:mixins="AddCssFromTags" t:tags="tag.name">
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -125,6 +125,6 @@
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(ga, s);
           })();
-</script>		
+		</script>		
 	</body>
 </html>

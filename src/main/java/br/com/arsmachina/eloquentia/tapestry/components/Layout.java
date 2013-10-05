@@ -28,7 +28,7 @@ import br.com.arsmachina.eloquentia.tapestry.services.UserService;
  */
 @Import(stack = "core", stylesheet = { "classpath:/META-INF/assets/eloquentia/css/eloquentia.css" })
 public class Layout {
-
+	
 	/**
 	 * Title. Usually, the title of the {@link Page} (post). Not required.
 	 */
@@ -54,7 +54,14 @@ public class Layout {
 	 */
 	@Parameter(required = true, allowNull = false, autoconnect = true)
 	private String siteName;
-
+	
+	/**
+	 * CSS class to be added to the &lt;html&gt; element.
+	 */
+	@Parameter(name = "class")
+	@Property
+	private String cssClass;
+	
 	@Inject
 	@Symbol(EloquentiaConstants.GOOGLE_ANALYTICS_KEY_SYMBOL)
 	private String googleAnalyticsKey;
@@ -196,5 +203,5 @@ public class Layout {
 	public boolean isAddGoogleAnalyticsWithSubdomains() {
 		return googleAnalyticsKey.trim().length() > 0 && hostname.trim().length() > 0; 
 	}
-
+	
 }

@@ -20,7 +20,6 @@ import org.mongojack.ObjectId;
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
  */
-// @MongoCollection(name = "tag")
 public class Tag {
 
 	private String id;
@@ -33,7 +32,9 @@ public class Tag {
 	
 	private boolean subdomain;
 	
-	private List<Link> headerLinks = new ArrayList<Link>(); 
+	private List<Link> headerLinks = new ArrayList<Link>();
+	
+	private String css;
 
 	/**
 	 * Returns the internal database id.
@@ -122,6 +123,22 @@ public class Tag {
 
 	public void setSubdomain(boolean subdomain) {
 		this.subdomain = subdomain;
+	}
+
+	/**
+	 * Returns the value of the css field.
+	 * @return a {@link String}.
+	 */
+	public String getCss() {
+		return css;
+	}
+
+	/**
+	 * Sets the value of the css field.
+	 * @param css a {@link String}.
+	 */
+	public void setCss(String css) {
+		this.css = css;
 	}
 
 

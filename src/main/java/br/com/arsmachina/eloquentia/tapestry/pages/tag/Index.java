@@ -12,7 +12,6 @@ import br.com.arsmachina.eloquentia.entity.Tag;
  * Page that shows the pages associated with a given tab. 
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
- *
  */
 public class Index {
 

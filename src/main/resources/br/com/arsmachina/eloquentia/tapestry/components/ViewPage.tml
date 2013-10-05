@@ -1,8 +1,8 @@
 <article
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-	xmlns="http://www.w3.org/1999/xhtml" 
-	id="${clientId}" t:type="Any" t:mixins="AddCssClassesFromTags, syntax-highlighter/SyntaxHighlighter" 
-	t:tags="page.tags" t:AddCssClassesFromTags.enable="!teaser" t:SyntaxHighlighter.enable="enableSyntaxHighlighter">
+	xmlns="http://www.w3.org/1999/xhtml"
+	id="${clientId}" t:type="Any" t:mixins="AddCssFromTags, syntax-highlighter/SyntaxHighlighter" 
+	t:tags="page.tags" t:AddCssFromTags.enable="!teaser" t:SyntaxHighlighter.enable="enableSyntaxHighlighter">
 	
 	<header>
 		<h2><a href="#" t:type="PageLink" t:page="Index" t:context="context">${page.title}</a></h2>
