@@ -91,6 +91,11 @@ public class SubdomainPageLinkTransformer implements PageRenderLinkTransformer {
 		Link link = null;
 		final EventContext activationContext = parameters.getActivationContext();
 		
+		if (port == null) {
+			final int portNumber = request.getServerPort();
+			port = portNumber == 80 ? "" : ":" + portNumber;
+		}
+		
 		if (enabled && parameters.getLogicalPageName().equals("Index") && activationContext.getCount() > 0) {
 			
 			final Page page = pageActivationContextService.toPage(activationContext, false);
@@ -103,11 +108,6 @@ public class SubdomainPageLinkTransformer implements PageRenderLinkTransformer {
 					
 					if (tagController.isSubdomain(tagName)) {
 
-						if (port == null) {
-							final int portNumber = request.getLocalPort();
-							port = portNumber == 80 ? "" : ":" + portNumber;
-						}
-						
 						link = new SimpleLink(
 								String.format("http://%s.%s%s/%s", tagName, hostname, port, page.getUri()));
 
