@@ -36,8 +36,8 @@ import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.linktransform.LinkTransformer;
 import org.apache.tapestry5.services.linktransform.PageRenderLinkTransformer;
 
+import br.com.arsmachina.eloquentia.EloquentiaConstants;
 import br.com.arsmachina.eloquentia.controller.TagController;
-import br.com.arsmachina.eloquentia.services.EloquentiaConstants;
 
 /**
  * {@link LinkTransformer} that does <code>domain.com/tag/xxx</code> ->  

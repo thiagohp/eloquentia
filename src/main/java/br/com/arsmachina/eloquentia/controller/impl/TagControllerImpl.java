@@ -1,11 +1,11 @@
 package br.com.arsmachina.eloquentia.controller.impl;
 
 import br.com.arsmachina.controller.impl.ControllerImpl;
+import br.com.arsmachina.eloquentia.EloquentiaConstants;
 import br.com.arsmachina.eloquentia.controller.PageController;
 import br.com.arsmachina.eloquentia.controller.TagController;
 import br.com.arsmachina.eloquentia.dao.TagDAO;
 import br.com.arsmachina.eloquentia.entity.Tag;
-import br.com.arsmachina.eloquentia.services.EloquentiaConstants;
 
 /**
  * Default {@link TagController} implementation.

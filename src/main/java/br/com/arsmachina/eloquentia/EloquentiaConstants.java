@@ -1,11 +1,13 @@
-package br.com.arsmachina.eloquentia.services;
+package br.com.arsmachina.eloquentia;
 
 /**
- * Class that defines the names of symbols used to configure Eloquentia.
+ * Class that defines the names of symbols used to configure Eloquentia and some of their default values.
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
  */
 public class EloquentiaConstants {
+	
+	private EloquentiaConstants() {}
 
 	/**
 	 * Name of the Tapestry-IoC symbol which defines the format for date-time fields.
@@ -52,5 +54,5 @@ public class EloquentiaConstants {
 	 * Name of the Tapestry-IoC symbol which defines the Google Analytics API key to be used.
 	 */
 	public static final String GOOGLE_ANALYTICS_KEY_SYMBOL = "eloquentia.google-analytics-key";
-
+	
 }

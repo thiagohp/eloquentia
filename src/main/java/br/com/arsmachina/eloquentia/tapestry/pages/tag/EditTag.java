@@ -2,7 +2,7 @@ package br.com.arsmachina.eloquentia.tapestry.pages.tag;
 
 import java.util.Locale;
 
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.tapestry5.EventContext;
 import org.apache.tapestry5.Field;
 import org.apache.tapestry5.ValidationTracker;
@@ -18,6 +18,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import br.com.arsmachina.eloquentia.controller.TagController;
 import br.com.arsmachina.eloquentia.entity.Tag;
 import br.com.arsmachina.eloquentia.entity.Tag.Link;
+import br.com.arsmachina.eloquentia.security.SecurityConstants;
 import br.com.arsmachina.eloquentia.tapestry.services.UserService;
 
 /**
@@ -25,7 +26,7 @@ import br.com.arsmachina.eloquentia.tapestry.services.UserService;
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
  */
-@RequiresAuthentication // FIXME: change check to role or permission
+@RequiresRoles(SecurityConstants.AUTHOR)
 public class EditTag {
 	
 	@Inject

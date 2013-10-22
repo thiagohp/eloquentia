@@ -9,6 +9,8 @@ import br.com.arsmachina.eloquentia.controller.PageController;
 import br.com.arsmachina.eloquentia.dao.PageDAO;
 import br.com.arsmachina.eloquentia.entity.Page;
 import br.com.arsmachina.eloquentia.entity.Tag;
+import br.com.arsmachina.eloquentia.entity.User;
+import br.com.arsmachina.eloquentia.security.ObjectAction;
 
 /**
  * Default {@link PageController} implementation.
@@ -62,6 +64,22 @@ public class PageControllerImpl extends ControllerImpl<Page, String> implements	
 	public List<Page> findByTag(String tagName, int firstResult,
 			int maxResults, SortCriterion... sortCriteria) {
 		return dao.findByTag(tagName, firstResult, maxResults, sortCriteria);
+	}
+
+	@Override
+	public boolean isPermitted(User user, Page page, ObjectAction objectAction) {
+		
+		boolean permitted = false;
+		boolean isAuthor = page.getPostedBy().equals(user);
+		
+		switch (objectAction) {
+			case DELETE:  
+			case EDIT : permitted = isAuthor; break;
+			case VIEW : permitted = true;
+		}
+		
+		return permitted;
+		
 	}
 	
 }

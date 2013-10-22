@@ -7,9 +7,9 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
+import br.com.arsmachina.eloquentia.EloquentiaConstants;
 import br.com.arsmachina.eloquentia.controller.PageController;
 import br.com.arsmachina.eloquentia.entity.Page;
-import br.com.arsmachina.eloquentia.services.EloquentiaConstants;
 import br.com.arsmachina.eloquentia.tapestry.services.PageActivationContextService;
 
 /**

@@ -1,5 +1,8 @@
 package br.com.arsmachina.eloquentia.tapestry.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.shiro.authc.credential.PasswordService;
 import org.apache.shiro.realm.Realm;
 import org.apache.tapestry5.MarkupWriterListener;
@@ -13,11 +16,14 @@ import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
+import org.apache.tapestry5.ioc.annotations.Marker;
 import org.apache.tapestry5.ioc.annotations.Primary;
+import org.apache.tapestry5.ioc.services.ChainBuilder;
 import org.apache.tapestry5.services.ValueEncoderFactory;
 import org.apache.tapestry5.services.linktransform.PageRenderLinkTransformer;
 import org.apache.tapestry5.urlrewriter.URLRewriterRule;
 
+import br.com.arsmachina.eloquentia.EloquentiaConstants;
 import br.com.arsmachina.eloquentia.controller.PageController;
 import br.com.arsmachina.eloquentia.controller.TagController;
 import br.com.arsmachina.eloquentia.controller.UserController;
@@ -34,8 +40,10 @@ import br.com.arsmachina.eloquentia.entity.Page;
 import br.com.arsmachina.eloquentia.entity.User;
 import br.com.arsmachina.eloquentia.security.BcryptPasswordService;
 import br.com.arsmachina.eloquentia.security.EloquentiaRealm;
+import br.com.arsmachina.eloquentia.security.ObjectAction;
+import br.com.arsmachina.eloquentia.security.ObjectPermissionChecker;
+import br.com.arsmachina.eloquentia.security.PagePermissionChecker;
 import br.com.arsmachina.eloquentia.security.PasswordHasher;
-import br.com.arsmachina.eloquentia.services.EloquentiaConstants;
 import br.com.arsmachina.eloquentia.tapestry.rss.TagChannelProvider;
 import br.com.arsmachina.eloquentia.tapestry.urlrewriting.SubdomainPageLinkTransformer;
 import br.com.arsmachina.eloquentia.tapestry.urlrewriting.SubdomainTagLinkTransformer;
@@ -64,8 +72,38 @@ public class AppModule {
 		binder.bind(PasswordHasher.class, BcryptPasswordService.class);
 		binder.bind(UserValueEncoder.class);
 		binder.bind(PageValueEncoder.class);
+		binder.bind(PagePermissionChecker.class);
 		binder.bind(UserService.class, UserServiceImpl.class);
 		binder.bind(PageActivationContextService.class, PageActivationContextServiceImpl.class);
+	}
+	
+	/**
+	 * Buidls the {@link ObjectPermissionChecker} service.
+	 * 
+	 * @param contributions a {@link List} of {@link ObjectPermissionChecker}s.
+	 * @param chainBuilder a {@link ChainBuilder}.
+	 */
+	@SuppressWarnings("rawtypes")
+	@Marker(Primary.class)
+	public static ObjectPermissionChecker buildObjectPermissionChecker(List<ObjectPermissionChecker> contributions, ChainBuilder chainBuilder) {
+		
+		final ObjectPermissionChecker terminator = new ObjectPermissionChecker() {
+			@Override
+			public Boolean isPermitted(User user, Object object, ObjectAction action) {
+				return false;
+			}
+		};
+		
+		List<ObjectPermissionChecker> list = new ArrayList<ObjectPermissionChecker>(contributions);
+		list.add(terminator);
+		return chainBuilder.build(ObjectPermissionChecker.class, list);
+		
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static void contributeObjectPermissionChecker(OrderedConfiguration<ObjectPermissionChecker> configuration,
+			PagePermissionChecker pagePermissionChecker) {
+		configuration.add("page", pagePermissionChecker);
 	}
 
 	/**
@@ -180,5 +218,5 @@ public class AppModule {
 	public static void contributeMarkupRenderer(OrderedConfiguration<MarkupWriterListener> configuration) {
 		configuration.override("ImportCoreStack", null);
 	}
-
+	
 }

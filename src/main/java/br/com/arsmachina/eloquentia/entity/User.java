@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 import org.mongojack.ObjectId;
 
-import br.com.arsmachina.eloquentia.enums.Permission;
+import br.com.arsmachina.eloquentia.enums.Role;
 
 /**
  * Class that represents users of the blog.
@@ -31,7 +31,7 @@ public class User implements Serializable {
 
 	private String password;
 
-	private List<Permission> permissions = new ArrayList<Permission>();
+	private List<Role> roles = new ArrayList<Role>();
 
 	@Id
 	@ObjectId
@@ -85,18 +85,48 @@ public class User implements Serializable {
 
 	@NotNull
 	@Size(min = 1)
-	public List<Permission> getPermissions() {
-		return permissions;
+	public List<Role> getRoles() {
+		return roles;
 	}
 
-	public void setPermissions(List<Permission> permissions) {
-		this.permissions = permissions;
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", name=" + name
-				+ ", password=" + password + ", permissions=" + permissions + "]";
+				+ ", password=" + password + ", roles=" + roles + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof User)) {
+			return false;
+		}
+		User other = (User) obj;
+		if (login == null) {
+			if (other.login != null) {
+				return false;
+			}
+		} else if (!login.equals(other.login)) {
+			return false;
+		}
+		return true;
 	}
 
 }

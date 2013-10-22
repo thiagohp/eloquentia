@@ -11,7 +11,7 @@ import org.apache.tapestry5.ValidationException;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.services.FormSupport;
 
-import br.com.arsmachina.eloquentia.services.EloquentiaConstants;
+import br.com.arsmachina.eloquentia.EloquentiaConstants;
 
 /**
  * {@link Translator} implementation for date-time fields.

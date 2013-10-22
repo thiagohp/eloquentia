@@ -7,6 +7,7 @@ import br.com.arsmachina.dao.SortCriterion;
 import br.com.arsmachina.eloquentia.entity.Page;
 import br.com.arsmachina.eloquentia.entity.Tag;
 import br.com.arsmachina.eloquentia.entity.User;
+import br.com.arsmachina.eloquentia.security.ObjectAction;
 
 /**
  * Controller interface for {@link User}.
@@ -71,5 +72,14 @@ public interface PageController extends Controller<Page, String> {
 	 * @return a {@link List} of {@link Page}.
 	 */
 	List<Page> findByTag(String tagName, int firstResult, int maxResults, SortCriterion ... sortCriteria);
+	
+	/**
+	 * Tells whether the given user can perform the given action on the given page.
+	 * @param user an {@link User}
+	 * @param page a {@link Page}
+	 * @param objectAction an {@link ObjectAction}
+	 * @return a <code>boolean</code>
+	 */
+	boolean isPermitted(User user, Page page, ObjectAction objectAction);
 
 }

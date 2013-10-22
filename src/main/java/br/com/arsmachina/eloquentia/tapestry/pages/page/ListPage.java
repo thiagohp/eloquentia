@@ -2,7 +2,7 @@ package br.com.arsmachina.eloquentia.tapestry.pages.page;
 
 import java.util.List;
 
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.tapestry5.alerts.AlertManager;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.Messages;
@@ -10,6 +10,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 
 import br.com.arsmachina.eloquentia.controller.PageController;
 import br.com.arsmachina.eloquentia.entity.Page;
+import br.com.arsmachina.eloquentia.security.SecurityConstants;
 import br.com.arsmachina.eloquentia.tapestry.services.PageActivationContextService;
 
 /**
@@ -17,7 +18,7 @@ import br.com.arsmachina.eloquentia.tapestry.services.PageActivationContextServi
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
  */
-@RequiresAuthentication
+@RequiresRoles(SecurityConstants.AUTHOR)
 public class ListPage {
 	
 	@Inject

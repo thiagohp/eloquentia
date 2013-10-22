@@ -15,10 +15,10 @@ import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.services.PageRenderLinkSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
+import br.com.arsmachina.eloquentia.EloquentiaConstants;
 import br.com.arsmachina.eloquentia.controller.TagController;
 import br.com.arsmachina.eloquentia.entity.Page;
 import br.com.arsmachina.eloquentia.entity.Tag;
-import br.com.arsmachina.eloquentia.services.EloquentiaConstants;
 import br.com.arsmachina.eloquentia.tapestry.pages.tag.Css;
 
 /**
