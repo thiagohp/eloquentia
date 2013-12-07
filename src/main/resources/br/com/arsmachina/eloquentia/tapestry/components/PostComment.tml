@@ -1,0 +1,51 @@
+<div
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns="http://www.w3.org/1999/xhtml"
+	class="post-comment">
+
+	<!-- Main comment form -->	
+	<t:if test="!parent">
+		<t:security.notAuthenticated>
+			<div id="post-comment" class="not-logged-in">
+				<p>
+					${message:eloquentia.login-before-you-post-a-comment}
+				</p>
+			</div>
+		</t:security.notAuthenticated>
+			
+		<t:security.authenticated>
+			<t:security.lacksRole role="COMMENTER">
+				<p>${message:eloquentia.lack-of-commenter-role}</p>
+			</t:security.lacksRole>
+			<t:security.hasRole role="COMMENTER">
+				<div id="post-comment">
+					<h4>
+						${message:eloquentia.post-a-comment}
+					</h4>
+					<t:delegate to="block:form"/>
+				</div>
+			</t:security.hasRole>
+		</t:security.authenticated>
+		
+	</t:if>
+	
+	<t:if test="parent">
+		<t:security.notAuthenticated>
+			<div class="not-logged-in">
+				<p>
+					${message:eloquentia.login-before-you-reply}
+				</p>
+			</div>
+		</t:security.notAuthenticated>
+		<t:security.authenticated>
+		</t:security.authenticated>
+	</t:if>
+	
+	<t:block id="form">
+		<form t:type="Form" t:id="postComment" class="post-comment-form" role="form">
+			<textarea t:type="TextArea" t:id="newCommentText" t:validate="required" class=".form-control"/>
+			<input type="submit" class=".form-control"/>
+		</form>
+	</t:block>
+	
+</div>

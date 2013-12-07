@@ -1,0 +1,20 @@
+<div
+	t:type="Layout" 
+	t:title="message:eloquentia.sign-up"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns="http://www.w3.org/1999/xhtml">
+
+	<h2>${message:eloquentia.sign-up-form-description}</h2>
+		
+	<form t:type="Form" t:id="form" validate="user">
+		<div t:type="Errors"/>
+		<div t:type="Alerts"/>
+		<input type="textfield" t:type="TextField" t:id="name" t:value="user.name" t:mixins="FormGroup"/>
+		<input type="textfield" t:type="TextField" t:id="login" t:value="user.login" t:mixins="FormGroup"/>
+		<input type="textfield" t:type="TextField" t:id="email" t:value="user.email" t:mixins="FormGroup"/>
+		<input type="textfield" t:type="PasswordField" t:id="password" t:value="user.password" t:mixins="FormGroup"/>
+		<input type="textfield" t:type="PasswordField" t:id="passwordCheck" t:value="passwordCheck" t:mixins="FormGroup"/>
+		<input type="submit" id="submit"/>
+	</form>
+	
+</div>

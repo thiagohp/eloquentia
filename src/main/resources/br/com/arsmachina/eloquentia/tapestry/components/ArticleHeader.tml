@@ -1,0 +1,10 @@
+<t:container
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns="http://www.w3.org/1999/xhtml">
+	<p class="page-header">
+		${message:eloquentia.posted-by} <a href="#">${article.postedBy.name}</a> ${message:eloquentia.posted-at}
+		<time t:type="Time" t:date="article.posted">2013-06-01 20:15</time>.
+		<span class="tags-label" t:type="If" t:test="!article.tags.empty">${message:eloquentia.tags}:</span> 
+	</p>
+	<ul t:type="TagList" t:tags="article.tags"></ul>
+</t:container>

@@ -35,6 +35,8 @@ public class Tag {
 	private List<Link> headerLinks = new ArrayList<Link>();
 	
 	private String css;
+	
+	private boolean blog = true;
 
 	/**
 	 * Returns the internal database id.
@@ -59,7 +61,7 @@ public class Tag {
 	 * @return a {@link String}.
 	 */
 	@NotNull
-	@Size(min = 1, max = 50)
+	@Size(max = 50)
 	@Pattern(regexp = "[a-z0-9\\-]+")
 	public String getName() {
 		return name;
@@ -140,8 +142,22 @@ public class Tag {
 	public void setCss(String css) {
 		this.css = css;
 	}
+	
+	/**
+	 * Returns the value of the blog field.
+	 * @return a {@link boolean}.
+	 */
+	public boolean isBlog() {
+		return blog;
+	}
 
-
+	/**
+	 * Sets the value of the blog field.
+	 * @param blog a {@link boolean}.
+	 */
+	public void setBlog(boolean blog) {
+		this.blog = blog;
+	}
 
 	/**
 	 * Class that represents a link.

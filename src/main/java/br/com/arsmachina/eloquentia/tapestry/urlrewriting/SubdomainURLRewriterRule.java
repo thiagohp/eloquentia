@@ -37,11 +37,17 @@ import br.com.arsmachina.eloquentia.controller.TagController;
 import br.com.arsmachina.eloquentia.entity.Tag;
 
 /**
+ * <p>
  * URL rewriter rule that handles subdomains: 
  * <code>xxx.domain.com</code> -> <code>domain.com/tag/xxx</code>, where xxx is a {@link Tag}
  * with the <code>subdomain</code> boolean property set to true. The the base domain is taken
  * from the {@link SymbolConstants#HOSTNAME} symbol. In the example above, the symbol value is
- * <code>domain.com</code>. 
+ * <code>domain.com</code>.
+ * </p>
+ * <p>
+ * If the tag isn't a blog ({@link Tag#isBlog()} property false) and there's a page
+ * with the same name as the tag, the rewriting is to <code>domain.com/xxx</code>.
+ * </p>
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
  */
@@ -79,7 +85,14 @@ public class SubdomainURLRewriterRule implements URLRewriterRule {
 			
 			// the tag must exist and have it marked as subdomain for the rewriting to happen.
 			if (tag != null && tag.isSubdomain()) {
-				request = new SimpleRequestWrapper(request, hostname, "/tag/" + tagName);
+				
+				if (tag.isBlog()) {
+					request = new SimpleRequestWrapper(request, hostname, "/tag/" + tagName);
+				}
+				else {
+					request = new SimpleRequestWrapper(request, hostname, "/" + tagName);
+				}
+				
 			}
 			
 		}

@@ -3,8 +3,9 @@ html, body {
 	width: 100%;
 }
 
-div.page-header {
+div.page-header, p.page-header {
 	border: none;
+	display: inline;
 }
 
 ol.list-group-item:odd {
@@ -62,7 +63,7 @@ ol.tag-list li {
 	display: inline;
 	list-style-type: none;
 	margin-left: 0.4em;
-	font-size: 0.8em;
+	font-size: 1em;
 }
 
 article div.content {
@@ -72,3 +73,21 @@ article div.content {
 textarea#css {
 	height: 10em;
 }
+
+article.comment {
+	padding: 0.75em;
+	margin-top: 0.5em;
+	background-color: #e3e3e3;
+/*	border-style: solid;
+	border-color: e3e3e3f;
+	border-width: 1px;
+	border-radius: 3px;*/
+}
+
+article.comment:nth-child(2n+1) {
+	background-color: #f2f2f2;
+}
+
+#post-comment {
+	margin-top: 1em;
+} 

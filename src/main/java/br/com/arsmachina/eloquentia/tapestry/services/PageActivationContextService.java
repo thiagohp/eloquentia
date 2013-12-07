@@ -31,10 +31,8 @@ public interface PageActivationContextService {
 	 * Returns the page corresponding to an {@link EventContext}.
 	 * 
 	 * @param eventContext an {@link EventContext}.
-	 * @param incrementViews a <code>boolean</code> defining whether the number of views of the page
-	 * should be incremented or not.
 	 * @return a {@link Page} or <code>null</code>.
 	 */
-	Page toPage(EventContext eventContext, boolean incrementViews);
+	Page toPage(EventContext eventContext);
 	
 }

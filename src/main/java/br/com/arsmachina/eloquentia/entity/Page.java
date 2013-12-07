@@ -16,6 +16,7 @@ import org.mongojack.MongoCollection;
 import org.mongojack.ObjectId;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Class that represents pages (posts) in the blog. It's called "page" and not "post" because,
@@ -24,8 +25,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
  */
+@JsonIgnoreProperties("views")
 @MongoCollection(name = "page")
-public class Page implements Serializable {
+public class Page implements Article, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -44,8 +46,6 @@ public class Page implements Serializable {
 	private Date edited;
 
 	private DBRef<User, String> postedByRef;
-	
-	private long views;
 	
 	@JsonIgnore
 	transient private User postedBy; 
@@ -80,7 +80,7 @@ public class Page implements Serializable {
 	}
 
 	@NotNull
-	@Size(min = 1, max = 140)
+	@Size(max = 140)
 	public String getTitle() {
 		return title;
 	}
@@ -164,14 +164,6 @@ public class Page implements Serializable {
 		if (postedBy != null) {
 			postedByRef = new DBRef<User, String>(postedBy.getId(), "user");
 		}
-	}
-
-	public long getViews() {
-		return views;
-	}
-
-	public void setViews(long views) {
-		this.views = views;
 	}
 
 	@Override

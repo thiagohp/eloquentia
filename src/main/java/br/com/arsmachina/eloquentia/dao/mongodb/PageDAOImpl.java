@@ -6,7 +6,6 @@ import java.util.List;
 import org.mongojack.DBCursor;
 import org.mongojack.DBQuery;
 import org.mongojack.DBQuery.Query;
-import org.mongojack.DBUpdate;
 import org.mongojack.JacksonDBCollection;
 
 import br.com.arsmachina.dao.SortCriterion;
@@ -44,19 +43,7 @@ public class PageDAOImpl extends AbstractDAOImpl<Page, String> implements PageDA
 	}
 
 	public Page findByUri(String uri) {
-		return findByUri(uri, false);
-	}
-
-	public Page findByUri(String uri, boolean incrementViews) {
-		Page page;
-		final JacksonDBCollection<Page, String> dbCollection = getDbCollection();
-		if (incrementViews) {
-			page = dbCollection.findAndModify(getUriQuery(uri), null, null, false, DBUpdate.inc("views"), true, false);
-		}
-		else {
-			page = objectOrNull(dbCollection.find(getUriQuery(uri)));
-		}
-		return page;
+		return objectOrNull(getDbCollection().find(getUriQuery(uri)));
 	}
 	
 	protected Query getUriQuery(String uri) {

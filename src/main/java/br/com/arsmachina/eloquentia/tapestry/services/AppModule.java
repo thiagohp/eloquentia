@@ -24,15 +24,19 @@ import org.apache.tapestry5.services.linktransform.PageRenderLinkTransformer;
 import org.apache.tapestry5.urlrewriter.URLRewriterRule;
 
 import br.com.arsmachina.eloquentia.EloquentiaConstants;
+import br.com.arsmachina.eloquentia.controller.CommentController;
 import br.com.arsmachina.eloquentia.controller.PageController;
 import br.com.arsmachina.eloquentia.controller.TagController;
 import br.com.arsmachina.eloquentia.controller.UserController;
+import br.com.arsmachina.eloquentia.controller.impl.CommentControllerImpl;
 import br.com.arsmachina.eloquentia.controller.impl.PageControllerImpl;
 import br.com.arsmachina.eloquentia.controller.impl.TagControllerImpl;
 import br.com.arsmachina.eloquentia.controller.impl.UserControllerImpl;
+import br.com.arsmachina.eloquentia.dao.CommentDAO;
 import br.com.arsmachina.eloquentia.dao.PageDAO;
 import br.com.arsmachina.eloquentia.dao.TagDAO;
 import br.com.arsmachina.eloquentia.dao.UserDAO;
+import br.com.arsmachina.eloquentia.dao.mongodb.CommentDAOImpl;
 import br.com.arsmachina.eloquentia.dao.mongodb.PageDAOImpl;
 import br.com.arsmachina.eloquentia.dao.mongodb.TagDAOImpl;
 import br.com.arsmachina.eloquentia.dao.mongodb.UserDAOImpl;
@@ -64,6 +68,8 @@ public class AppModule {
 		binder.bind(UserDAO.class, UserDAOImpl.class);
 		binder.bind(PageDAO.class, PageDAOImpl.class);
 		binder.bind(TagDAO.class, TagDAOImpl.class);
+		binder.bind(CommentDAO.class, CommentDAOImpl.class);
+		binder.bind(CommentController.class, CommentControllerImpl.class);
 		binder.bind(UserController.class, UserControllerImpl.class);
 		binder.bind(PageController.class, PageControllerImpl.class);
 		binder.bind(TagController.class, TagControllerImpl.class);

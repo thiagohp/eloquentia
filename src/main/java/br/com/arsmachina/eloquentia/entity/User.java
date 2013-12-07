@@ -44,7 +44,7 @@ public class User implements Serializable {
 	}
 
 	@NotNull
-	@Size(min = 3)
+	@Size(min = 3, max = 100)
 	public String getEmail() {
 		return email;
 	}
@@ -54,7 +54,7 @@ public class User implements Serializable {
 	}
 
 	@NotNull
-	@Size(min = 3)
+	@Size(min = 3, max = 100)
 	public String getName() {
 		return name;
 	}
@@ -64,7 +64,7 @@ public class User implements Serializable {
 	}
 
 	@NotNull
-	@Size(min = 3)
+	@Size(min = 3, max = 100)
 	public String getLogin() {
 		return login;
 	}
@@ -74,7 +74,7 @@ public class User implements Serializable {
 	}
 
 	@NotNull
-	@Size(min = 10)
+	@Size(min = 6, max = 50)
 	public String getPassword() {
 		return password;
 	}

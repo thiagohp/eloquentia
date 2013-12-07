@@ -1,0 +1,31 @@
+<section
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns="http://www.w3.org/1999/xhtml"
+	class="comments-section"
+	id="comments">
+	
+	<p class="comments-count">
+		${commentCountParagraph}
+	</p>
+	
+	<t:if test="showComments">
+	
+		<p>
+			<a href="#post-comment"></a>
+		</p>
+		
+		<article t:type="Loop" t:source="comments" t:value="comment" class="comment">
+			<p class="comment-header" t:type="ArticleHeader" t:article="comment">
+				Nothing!
+			</p>
+			<div class="comment-content">
+				${comment.content}
+			</div>
+			<div t:type="PostComment" t:page="page" t:parent="comment"/>
+		</article>
+		
+		<div t:type="PostComment" t:page="page"/>
+		
+	</t:if>
+	
+</section>

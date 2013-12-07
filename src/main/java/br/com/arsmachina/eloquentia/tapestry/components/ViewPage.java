@@ -3,13 +3,16 @@ package br.com.arsmachina.eloquentia.tapestry.components;
 import java.util.Locale;
 
 import org.apache.tapestry5.ClientElement;
+import org.apache.tapestry5.annotations.Cached;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 import br.com.arsmachina.eloquentia.EloquentiaConstants;
 import br.com.arsmachina.eloquentia.controller.PageController;
+import br.com.arsmachina.eloquentia.controller.TagController;
 import br.com.arsmachina.eloquentia.entity.Page;
+import br.com.arsmachina.eloquentia.entity.Tag;
 import br.com.arsmachina.eloquentia.tapestry.services.PageActivationContextService;
 
 /**
@@ -44,6 +47,9 @@ public class ViewPage implements ClientElement {
 	private PageActivationContextService pageActivationContextService;
 	
 	@Inject
+	private TagController tagController;
+	
+	@Inject
 	private Messages messages;
 
 	public Page getPage() {
@@ -70,12 +76,39 @@ public class ViewPage implements ClientElement {
 		return "page-" + page.getUri().replaceAll("/", "_");
 	}
 	
-	public String getNumberOfPageViews() {
-		return messages.format("eloquentia.number-of-page-views", page.getViews());
-	}
-	
 	public boolean isEnableSyntaxHighlighter() {
 		return page.getTags().contains(EloquentiaConstants.SYNTAX_HIGHLIGHT_TAG);
+	}
+	
+	public boolean isShowComments() {
+		boolean showComments = true;
+		if (teaser) {
+			showComments = false;
+		}
+		else {
+			showComments = isBlog();
+		}
+		return showComments;
+	}
+	
+	public boolean isBlog() {
+		final Tag tag = getTag();
+		return tag == null || tag.isBlog();
+	}
+
+	boolean isTagHomePage() {
+		Tag tag = getTag();
+		return !tag.isBlog() && tag.isSubdomain() && page.getUri().equals(tag.getName());
+	}
+	
+	@Cached
+	Tag getTag() {
+		final String tagName = page.getFirstTagName();
+		Tag tag = null;
+		if (tagName != null) {
+			tag = tagController.findByName(tagName);
+		}
+		return tag;
 	}
 	
 }

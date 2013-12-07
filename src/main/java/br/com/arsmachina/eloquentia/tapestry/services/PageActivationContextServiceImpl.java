@@ -44,7 +44,7 @@ public class PageActivationContextServiceImpl implements PageActivationContextSe
 		return activationContext;
 	}
 
-	public Page toPage(EventContext eventContext, boolean incrementViews) {
+	public Page toPage(EventContext eventContext) {
 		
 		Page page = null;
 		final int count = eventContext.getCount();
@@ -68,7 +68,7 @@ public class PageActivationContextServiceImpl implements PageActivationContextSe
 				
 			}
 			
-			page = incrementViews ? pageController.findByUri(uri, incrementViews) : pageController.findByUri(uri);
+			page = pageController.findByUri(uri);
 			
 		}
 		

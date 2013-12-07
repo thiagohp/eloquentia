@@ -71,7 +71,7 @@ public class EditPage {
 		
 		if (context.getCount() > 0) {
 			
-			page = pageActivationContextService.toPage(context, false);
+			page = pageActivationContextService.toPage(context);
 			returnValue = page != null ? null : EditPage.class;
 			
 			if (page != null) {

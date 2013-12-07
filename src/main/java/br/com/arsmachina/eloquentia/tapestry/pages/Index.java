@@ -3,8 +3,8 @@ package br.com.arsmachina.eloquentia.tapestry.pages;
 import org.apache.tapestry5.EventContext;
 import org.apache.tapestry5.annotations.Cached;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.services.MasterObjectProvider;
 
+import br.com.arsmachina.eloquentia.controller.PageController;
 import br.com.arsmachina.eloquentia.controller.TagController;
 import br.com.arsmachina.eloquentia.entity.Page;
 import br.com.arsmachina.eloquentia.entity.Tag;
@@ -24,13 +24,28 @@ public class Index {
 	private TagController tagController;
 	
 	@Inject
-	private MasterObjectProvider masterObjectProvider;
+	private PageController pageController;
 	
 	private Page page;
 	
-	Object onActivate(EventContext context) {
-		page = pageActivationContextService.toPage(context, true);
+	public Object onActivate(EventContext context) {
+		
+		page = pageActivationContextService.toPage(context);
+		final Tag tag = getTag();
+		
+		// if there's no page directly matching this context and the current tag isn't a blog,
+		// we try to find the home page for that tag, which is a page whose URI is the same as the
+		// tag name.
+		if (page == null && !tag.isBlog()) {
+			page = pageController.findByUri(tag.getName());
+		}
+		
 		return page != null || context.getCount() < 1 ? null : Index.class;
+		
+	}
+	
+	Object onPassivate() {
+		return page != null ? pageActivationContextService.toActivationContext(page.getUri()) : null;
 	}
 	
 	@Cached
@@ -84,6 +99,18 @@ public class Index {
 	
 	public String getCssClass() {
 		return page != null ? "pageView" : "tagView";
+	}
+	
+	public String getSiteName() {
+		Tag tag = getTag();
+		final String name;
+		if (tag.isSubdomain()) {
+			name = tag.getTitle();
+		}
+		else {
+			name = getMainTag().getTitle();
+		}
+		return name;
 	}
 	
 }

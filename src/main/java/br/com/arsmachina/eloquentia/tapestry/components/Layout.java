@@ -52,7 +52,7 @@ public class Layout {
 	/**
 	 * Site name. Required. Defaults to the main tag name.
 	 */
-	@Parameter(required = true, allowNull = false, autoconnect = true)
+	@Parameter(required = true, allowNull = false, autoconnect = true, value = "mainTag.name")
 	private String siteName;
 	
 	/**

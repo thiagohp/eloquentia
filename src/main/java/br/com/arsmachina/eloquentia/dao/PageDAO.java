@@ -28,17 +28,6 @@ public interface PageDAO extends DAO<Page, String> {
 	Page findByUri(String uri);
 
 	/**
-	 * Finds a {@link Page} by its id, but first incrementing its {@link Page#getViews()} field
-	 * if <code>incrementViews</code> is <code>true</code>.
-	 *  
-	 * @param id a {@link String} containing the page uri.
-	 * @param incrementViews a <code>boolean</code> defining whether to increment the views 
-	 * field of the returned page or not.
-	 * @return an {@link Page} or null.
-	 */
-	Page findByUri(String uri, boolean incrementViews);
-
-	/**
 	 * Search by tag.
 	 * 
 	 * @param tag a {@link Tag}. If <code>null</code>, all tags will be considered.

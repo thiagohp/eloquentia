@@ -11,6 +11,7 @@
 			<input type="textfield" t:type="TextField" t:id="title" t:value="tag.title" t:mixins="FormGroup"/>
 			<input type="textfield" t:type="TextField" t:id="subtitle" t:value="tag.subtitle" t:mixins="FormGroup"/>
 			<input type="textfield" t:type="Checkbox" t:id="subdomain" t:value="tag.subdomain" t:mixins="FormGroup"/>
+			<input type="textfield" t:type="Checkbox" t:id="blog" t:value="tag.blog" t:mixins="FormGroup"/>
 			<textarea t:type="TextArea" t:id="css" t:value="tag.css" t:mixins="FormGroup"/>
 			<input type="submit" id="submit"/>
 		</form>

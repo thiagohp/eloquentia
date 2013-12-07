@@ -4,17 +4,9 @@
 	id="${clientId}" t:type="Any" t:mixins="AddCssFromTags, syntax-highlighter/SyntaxHighlighter" 
 	t:tags="page.tags" t:AddCssFromTags.enable="!teaser" t:SyntaxHighlighter.enable="enableSyntaxHighlighter">
 	
-	<header>
+	<header t:type="If" t:test="blog">
 		<h2><a href="#" t:type="PageLink" t:page="Index" t:context="context">${page.title}</a></h2>
-		<div class="page-info">
-			<p>
-				${message:eloquentia.posted-by} <a href="#">${page.postedBy.name}</a> ${message:eloquentia.posted-at}
-				<time t:type="Time" t:date="page.posted">2013-06-01 20:15</time>.
-				<span class="pageViews">${numberOfPageViews}</span>.
-				${message:eloquentia.tags}: 
-			</p>
-			<ul t:type="TagList" t:tags="page.tags"></ul>
-		</div>
+		<div class="page-info" t:type="ArticleHeader" t:article="page"></div>
 	</header>
 	
 	<div class="teaser" t:type="If" t:test="teaser">
@@ -27,5 +19,9 @@
 	<div class="content" t:type="If" t:test="!teaser">
 		<div t:type="OutputRaw" t:value="page.content"/>
 	</div>
+	
+	<t:if test="showComments">
+		<div t:type="ViewComments" t:page="page" t:showComments="!teaser"></div>
+	</t:if>
 	
 </article>

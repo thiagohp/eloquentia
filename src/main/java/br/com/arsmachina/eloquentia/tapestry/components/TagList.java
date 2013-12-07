@@ -43,33 +43,37 @@ public class TagList {
 	 * @return <code>false</code> so the component body isn't rendered.
 	 */
 	boolean beginRender(MarkupWriter writer) {
-		
-		Tag tag;
-		String tagTitle;
-		writer.element("ol", "class", "tag-list");
 
-		// TagController.findByName() will be heavily cached, so we can do this loop this way,
-		// instead of trying to load all tags from the database at once.
-		for (String tagName : tags) {
-			
-			writer.element("li");
-			
-			tag = tagController.findByName(tagName);
-			tagTitle = tag != null ? tag.getTitle() : tagName;
-			
-			final Link link = pageRenderLinkSource.createPageRenderLinkWithContext(Index.class, tagName);
-			final Element a = writer.element("a", "href", link.toAbsoluteURI(), "class", "tag-link");
-			a.text(tagName);
-			if (!tagName.equals(tagTitle)) {
-				a.attribute("title", tagTitle);
+		if (tags.size() > 0) {
+		
+			Tag tag;
+			String tagTitle;
+			writer.element("ol", "class", "tag-list");
+	
+			// TagController.findByName() will be heavily cached, so we can do this loop this way,
+			// instead of trying to load all tags from the database at once.
+			for (String tagName : tags) {
+				
+				writer.element("li");
+				
+				tag = tagController.findByName(tagName);
+				tagTitle = tag != null ? tag.getTitle() : tagName;
+				
+				final Link link = pageRenderLinkSource.createPageRenderLinkWithContext(Index.class, tagName);
+				final Element a = writer.element("a", "href", link.toAbsoluteURI(), "class", "tag-link");
+				a.text(tagName);
+				if (!tagName.equals(tagTitle)) {
+					a.attribute("title", tagTitle);
+				}
+				
+				writer.end(); // li
+				writer.end(); // a
+				
 			}
 			
-			writer.end(); // li
-			writer.end(); // a
+			writer.end(); // ol
 			
 		}
-		
-		writer.end(); // ol
 		
 		return false;
 		

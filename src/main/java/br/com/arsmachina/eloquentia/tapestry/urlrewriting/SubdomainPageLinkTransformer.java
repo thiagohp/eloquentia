@@ -98,7 +98,7 @@ public class SubdomainPageLinkTransformer implements PageRenderLinkTransformer {
 		
 		if (enabled && parameters.getLogicalPageName().equals("Index") && activationContext.getCount() > 0) {
 			
-			final Page page = pageActivationContextService.toPage(activationContext, false);
+			final Page page = pageActivationContextService.toPage(activationContext);
 			
 			if (page != null) {
 				

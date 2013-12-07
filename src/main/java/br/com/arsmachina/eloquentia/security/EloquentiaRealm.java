@@ -94,6 +94,7 @@ public class EloquentiaRealm extends AuthorizingRealm {
 		}
 		
 		return authenticationInfo;
+		
 	}
 
 	@Override

@@ -30,10 +30,6 @@ public class PageControllerImpl extends ControllerImpl<Page, String> implements	
 		return dao.findByUri(uri);
 	}
 
-	public Page findByUri(String uri, boolean incrementViews) {
-		return dao.findByUri(uri, incrementViews);
-	}
-
 	public List<Page> findByTag(Tag tag, int firstResult, int maxResults,
 			SortCriterion... sortCriteria) {
 		if (sortCriteria == null || sortCriteria.length == 0) {
