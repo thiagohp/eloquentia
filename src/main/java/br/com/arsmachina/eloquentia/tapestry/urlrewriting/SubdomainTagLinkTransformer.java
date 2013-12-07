@@ -94,7 +94,7 @@ public class SubdomainTagLinkTransformer implements PageRenderLinkTransformer {
 			
 			final String tagName = activationContext.get(String.class, 0);
 			
-			// avoid /tag/www and use just 
+			// avoid /tag/www and use just /
 			if (tagName.equals(EloquentiaConstants.MAIN_TAG_NAME)) {
 				link = new SimpleLink(String.format("http://%s%s", hostname, port));
 			}
