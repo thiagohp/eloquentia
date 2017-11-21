@@ -18,8 +18,13 @@ import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Marker;
 import org.apache.tapestry5.ioc.annotations.Primary;
+import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.ChainBuilder;
+import org.apache.tapestry5.services.Core;
 import org.apache.tapestry5.services.ValueEncoderFactory;
+import org.apache.tapestry5.services.compatibility.Compatibility;
+import org.apache.tapestry5.services.javascript.JavaScriptStack;
+import org.apache.tapestry5.services.javascript.StackExtension;
 import org.apache.tapestry5.services.linktransform.PageRenderLinkTransformer;
 import org.apache.tapestry5.urlrewriter.URLRewriterRule;
 
@@ -133,8 +138,22 @@ public class AppModule {
 		configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
 		configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,pt,pt_BR");
 		configuration.add(SymbolConstants.APPLICATION_VERSION, "0.0.1-SNAPSHOT");
+		configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
+		configuration.add(SymbolConstants.BOOTSTRAP_ROOT, "context:mybootstrap");
+		configuration.add(SymbolConstants.MINIFICATION_ENABLED, "false");
+		configuration.add(SymbolConstants.COMPRESS_WHITESPACE, "false");
+		configuration.add(SymbolConstants.COMPACT_JSON, "false");
 	}
 
+
+	@Contribute(JavaScriptStack.class)
+	@Core
+	public static void setupCoreJavaScriptStack(OrderedConfiguration<StackExtension> configuration,
+												Compatibility compatibility)
+	{
+		StackExtension libraryJquery = StackExtension.library( "context:jquery/jquery-3.1.1.slim.min.js");
+		configuration.override("jquery-library", libraryJquery);
+	}
 	/**
 	 * Defines some symbol default values values.
 	 * @param configuration a {@link MappedConfiguration}.
