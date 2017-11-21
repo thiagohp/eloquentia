@@ -11,3 +11,5 @@
 /deploy.sh
 /posts.txt
 /todo.txt
+/.idea
+*.iml
