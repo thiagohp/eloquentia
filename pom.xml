@@ -41,6 +41,10 @@
 			</exclusions>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-upload</artifactId>
+		</dependency>
+		<dependency>
 		    <groupId>org.mongojack</groupId>
 		    <artifactId>mongojack</artifactId>
 		</dependency>
@@ -60,6 +64,10 @@
 					<artifactId>tapestry-core</artifactId>
 					<groupId>org.apache.tapestry</groupId>
 				</exclusion>
+				<exclusion>
+					<artifactId>tapestry-ioc</artifactId>
+					<groupId>org.apache.tapestry</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -70,13 +78,27 @@
 			<groupId>org.mindrot</groupId>
 			<artifactId>jbcrypt</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>br.com.arsmachina</groupId>
-			<artifactId>tapestry-wymeditor</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>br.com.arsmachina</groupId> -->
+<!-- 			<artifactId>tapestry-wymeditor</artifactId> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>br.com.arsmachina</groupId>
 			<artifactId>tapestry-syntax-highlighter</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>tapestry-ioc</artifactId>
+					<groupId>org.apache.tapestry</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>tapestry-core</artifactId>
+					<groupId>org.apache.tapestry</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>br.com.arsmachina</groupId>
+			<artifactId>tapestry-url-rewriter</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>br.com.arsmachina</groupId>
@@ -99,16 +121,16 @@
 <!-- 			<artifactId>tynamo-federatedaccounts-pac4jbasedoauth</artifactId> -->
 <!-- 		</dependency>		 -->
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>apache-staging</id>
-			<name>Apache staging</name>
-			<url>https://repository.apache.org/content/groups/staging</url>
-		</repository>
-		<repository>
-			<id>apache-snapshot</id>
-			<name>Apache snapshot</name>
-			<url>https://repository.apache.org/content/groups/snapshots</url>
-		</repository>
-	</repositories>
+<!-- 	<repositories> -->
+<!-- 		<repository> -->
+<!-- 			<id>apache-staging</id> -->
+<!-- 			<name>Apache staging</name> -->
+<!-- 			<url>https://repository.apache.org/content/groups/staging</url> -->
+<!-- 		</repository> -->
+<!-- 		<repository> -->
+<!-- 			<id>apache-snapshot</id> -->
+<!-- 			<name>Apache snapshot</name> -->
+<!-- 			<url>https://repository.apache.org/content/groups/snapshots</url> -->
+<!-- 		</repository> -->
+<!-- 	</repositories> -->
 </project>

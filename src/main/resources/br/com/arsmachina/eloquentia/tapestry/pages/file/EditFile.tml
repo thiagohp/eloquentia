@@ -1,0 +1,19 @@
+<html t:type="Layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns="http://www.w3.org/1999/xhtml"
+	t:siteName="literal:Eloquentia"
+	t:title="message:eloquentia.upload-file">
+	<h2>${message:eloquentia.upload-file}</h2>
+	<div>
+		<form t:type="Form" t:id="form" validate="file">
+			<div t:type="Errors"/>
+			<div t:type="Alerts"/>
+			<input t:type="upload" t:id="file" t:value="uploadedFile" validate="required" t:mixins="FormGroup"/>
+			<input type="submit" id="submit"/>
+		</form>
+	</div>
+	<div class="well">
+		<p>
+			<a href="#" t:type="PageLink" t:page="file/list">${message:eloquentia.list-files}</a>
+		</p>
+	</div>
+</html>

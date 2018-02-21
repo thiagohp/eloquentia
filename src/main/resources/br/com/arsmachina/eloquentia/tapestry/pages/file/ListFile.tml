@@ -1,0 +1,23 @@
+<html t:type="Layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="tapestry:parameter"
+	t:siteName="literal:Eloquentia"
+	t:title="literal:List files">
+	<div t:type="Alerts"/>
+	<table t:type="Grid" t:source="source" t:row="file" t:exclude="id, links" t:add="url">
+		<p:nameCell>
+			<a href="#" t:type="PageLink" t:page="file" t:context="file.name" target="_blank">${file.name}</a>
+		</p:nameCell>
+		<p:urlCell>
+			<a href="${fileUrl}" target="_blank">${fileUrl}</a>
+		</p:urlCell>
+		<p:modifiedDateCell>
+			${modifiedDate}
+		</p:modifiedDateCell>
+	</table>
+	<div>
+		<p>
+			<a href="#" t:type="PageLink" t:page="file/edit">${message:eloquentia.upload-file}</a>
+		</p>
+	</div>
+</html>

@@ -7,7 +7,7 @@
 	<h2>${message:eloquentia.sign-up-form-description}</h2>
 		
 	<form t:type="Form" t:id="form" validate="user">
-		<div t:type="Errors"/>
+		<div t:type=""/>
 		<div t:type="Alerts"/>
 		<input type="textfield" t:type="TextField" t:id="name" t:value="user.name" t:mixins="FormGroup"/>
 		<input type="textfield" t:type="TextField" t:id="login" t:value="user.login" t:mixins="FormGroup"/>

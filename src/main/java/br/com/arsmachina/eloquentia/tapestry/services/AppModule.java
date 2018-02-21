@@ -11,11 +11,13 @@ import org.apache.tapestry5.Translator;
 import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.beanvalidator.BeanValidatorConfigurer;
 import org.apache.tapestry5.beanvalidator.BeanValidatorSource;
+import org.apache.tapestry5.beanvalidator.modules.BeanValidatorModule;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
+import org.apache.tapestry5.ioc.annotations.ImportModule;
 import org.apache.tapestry5.ioc.annotations.Marker;
 import org.apache.tapestry5.ioc.annotations.Primary;
 import org.apache.tapestry5.ioc.services.ChainBuilder;
@@ -25,18 +27,22 @@ import org.apache.tapestry5.urlrewriter.URLRewriterRule;
 
 import br.com.arsmachina.eloquentia.EloquentiaConstants;
 import br.com.arsmachina.eloquentia.controller.CommentController;
+import br.com.arsmachina.eloquentia.controller.FileController;
 import br.com.arsmachina.eloquentia.controller.PageController;
 import br.com.arsmachina.eloquentia.controller.TagController;
 import br.com.arsmachina.eloquentia.controller.UserController;
 import br.com.arsmachina.eloquentia.controller.impl.CommentControllerImpl;
+import br.com.arsmachina.eloquentia.controller.impl.FileControllerImpl;
 import br.com.arsmachina.eloquentia.controller.impl.PageControllerImpl;
 import br.com.arsmachina.eloquentia.controller.impl.TagControllerImpl;
 import br.com.arsmachina.eloquentia.controller.impl.UserControllerImpl;
 import br.com.arsmachina.eloquentia.dao.CommentDAO;
+import br.com.arsmachina.eloquentia.dao.FileDAO;
 import br.com.arsmachina.eloquentia.dao.PageDAO;
 import br.com.arsmachina.eloquentia.dao.TagDAO;
 import br.com.arsmachina.eloquentia.dao.UserDAO;
 import br.com.arsmachina.eloquentia.dao.mongodb.CommentDAOImpl;
+import br.com.arsmachina.eloquentia.dao.mongodb.FileDAOImpl;
 import br.com.arsmachina.eloquentia.dao.mongodb.PageDAOImpl;
 import br.com.arsmachina.eloquentia.dao.mongodb.TagDAOImpl;
 import br.com.arsmachina.eloquentia.dao.mongodb.UserDAOImpl;
@@ -53,12 +59,14 @@ import br.com.arsmachina.eloquentia.tapestry.urlrewriting.SubdomainPageLinkTrans
 import br.com.arsmachina.eloquentia.tapestry.urlrewriting.SubdomainTagLinkTransformer;
 import br.com.arsmachina.eloquentia.tapestry.urlrewriting.SubdomainURLRewriterRule;
 import br.com.arsmachina.tapestry_rss.services.ChannelProvider;
+//import br.com.arsmachina.tapestry_wymeditor.services.WymeditorModule;
 
 /**
  * Eloquentia's main Tapestry-IoC module
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
  */
+@ImportModule({BeanValidatorModule.class, /*WymeditorModule.class*/})
 public class AppModule {
 	
 	/**
@@ -68,11 +76,13 @@ public class AppModule {
 		binder.bind(UserDAO.class, UserDAOImpl.class);
 		binder.bind(PageDAO.class, PageDAOImpl.class);
 		binder.bind(TagDAO.class, TagDAOImpl.class);
+		binder.bind(FileDAO.class, FileDAOImpl.class);
 		binder.bind(CommentDAO.class, CommentDAOImpl.class);
 		binder.bind(CommentController.class, CommentControllerImpl.class);
 		binder.bind(UserController.class, UserControllerImpl.class);
 		binder.bind(PageController.class, PageControllerImpl.class);
 		binder.bind(TagController.class, TagControllerImpl.class);
+		binder.bind(FileController.class, FileControllerImpl.class);
 		binder.bind(EloquentiaRealm.class);
 		binder.bind(PasswordService.class, BcryptPasswordService.class);
 		binder.bind(PasswordHasher.class, BcryptPasswordService.class);

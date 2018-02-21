@@ -41,6 +41,11 @@
 							</a>
 						</li>
 						<li t:type="If" t:test="userService.authenticated">
+							<a href="#" t:type="PageLink" t:page="file/list">
+								${message:eloquentia.list-files}
+							</a>
+						</li>
+						<li t:type="If" t:test="userService.authenticated">
 							<a href="#" t:type="EventLink" t:event="logout">
 								${message:eloquentia.logout} (${userService.user.name})
 							</a>

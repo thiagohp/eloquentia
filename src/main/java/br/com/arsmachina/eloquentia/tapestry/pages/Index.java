@@ -1,13 +1,18 @@
 package br.com.arsmachina.eloquentia.tapestry.pages;
 
+import java.util.Arrays;
+
 import org.apache.tapestry5.EventContext;
 import org.apache.tapestry5.annotations.Cached;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 import br.com.arsmachina.eloquentia.controller.PageController;
 import br.com.arsmachina.eloquentia.controller.TagController;
+import br.com.arsmachina.eloquentia.controller.UserController;
 import br.com.arsmachina.eloquentia.entity.Page;
 import br.com.arsmachina.eloquentia.entity.Tag;
+import br.com.arsmachina.eloquentia.entity.User;
+import br.com.arsmachina.eloquentia.enums.Role;
 import br.com.arsmachina.eloquentia.tapestry.services.PageActivationContextService;
 
 /**
@@ -26,9 +31,20 @@ public class Index {
 	@Inject
 	private PageController pageController;
 	
+	@Inject
+	private UserController userController;
+	
 	private Page page;
 	
 	public Object onActivate(EventContext context) {
+		
+//		User user = new User();
+//		user.setName("Thiago");
+//		user.setEmail("thiago@arsmachina.com.br");
+//		user.setLogin("thiago");
+//		user.setPassword("thiago");
+//		user.getRoles().addAll(Arrays.asList(Role.values()));
+//		userController.save(user);
 		
 		page = pageActivationContextService.toPage(context);
 		final Tag tag = getTag();
