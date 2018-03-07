@@ -108,6 +108,10 @@
 			<groupId>br.com.arsmachina</groupId>
 			<artifactId>tapestry-rss</artifactId>
 		</dependency>
+            <dependency>
+                <groupId>org.tynamo</groupId>
+                <artifactId>tapestry-ckeditor</artifactId>
+            </dependency>		
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.tynamo.security</groupId> -->
 <!-- 			<artifactId>tynamo-federatedaccounts-facebook</artifactId> -->
