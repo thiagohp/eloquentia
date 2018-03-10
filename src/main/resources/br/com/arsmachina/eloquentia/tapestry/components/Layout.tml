@@ -8,7 +8,7 @@
 <!-- 		<link t:type="" rel="bookmark" href="URL" /> -->
 		<title>${title}</title>
 	</head>
-	<body t:type="Any" t:mixins="AddCssFromTags" t:tags="tag.name">
+	<body t:type="Any" t:mixins="AddCss" t:tags="tag.name">
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -50,7 +50,7 @@
 								${message:eloquentia.logout} (${userService.user.name})
 							</a>
 						</li>
-						<li t:type="If" t:test="!userService.authenticated">
+						<li t:type="If" t:test="!userService.authenticated" class="login-link">
 							<a href="#" t:type="PageLink" t:page="security/Login">Login</a>
 						</li>
 <!-- 						<li class="dropdown"> -->
@@ -106,6 +106,11 @@
 			</main>
 		</div>
 		<footer>
+
+            <div t:type="If" t:test="mainTag.footer" class="row footer-tag">		
+				<t:OutputRaw value="mainTag.footer" />
+			</div>
+		
 			<div class="row">
 				<div class="col-md-12 powered-by">
 					<h4>

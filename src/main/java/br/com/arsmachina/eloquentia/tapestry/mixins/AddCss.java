@@ -25,11 +25,13 @@ import br.com.arsmachina.eloquentia.tapestry.pages.tag.Css;
  * Mixin that adds a list of tags in reverse order as CSS classes to the attached element,
  * which must implement {@link ClientElement}.
  * The reverse order is used so the first CSS classes take precedence by CSS overriding.
- * In addition, this mixin also adds the tags' CSS itself as style HTML elements.
+ * In addition, this mixin also adds the first tag's CSS itself as a style HTML elements.
+ * If the page parameter is not null and it's CSS is also not null, 
+ * it's also added as an HTML style element.
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
  */
-public class AddCssFromTags {
+public class AddCss {
 	
 	/**
 	 * Tags to be added as CSS classes.
@@ -42,6 +44,10 @@ public class AddCssFromTags {
 	 */
 	@Parameter("true")
 	private boolean enable;
+	
+	/** Page being rendered */
+	@Parameter
+	private Page page;
 	
 	@Inject
 	@Symbol(EloquentiaConstants.TAG_CSS_CLASS_PREFIX_SYMBOL)
@@ -94,7 +100,13 @@ public class AddCssFromTags {
 				javaScriptSupport.importStylesheet(new LinkAsset(link));
 			}
 		}
-		
+
+		if (page != null && page.getCss() != null && page.getCss().trim().length() > 0) {
+			final Link link = pageRenderLinkSource.createPageRenderLinkWithContext(
+					br.com.arsmachina.eloquentia.tapestry.pages.page.Css.class, page.getUri());
+			javaScriptSupport.importStylesheet(new LinkAsset(link));
+		}
+
 	}
 
 	private void addCssClasses() {
@@ -113,6 +125,10 @@ public class AddCssFromTags {
 		}
 		else {
 			classAttribute = classAttribute.trim() + " " + newCssClasses; 
+		}
+		
+		if (page != null) {
+			classAttribute = classAttribute + " page-" + page.getUri();
 		}
 		
 		element.forceAttributes("class", classAttribute);

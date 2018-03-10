@@ -37,6 +37,8 @@ public class Tag {
 	private String css;
 	
 	private boolean blog = true;
+	
+	private String footer;
 
 	/**
 	 * Returns the internal database id.
@@ -157,6 +159,15 @@ public class Tag {
 	 */
 	public void setBlog(boolean blog) {
 		this.blog = blog;
+	}
+	
+	@Size(min = 1, max = 100000)
+	public String getFooter() {
+	    return footer;
+	}
+
+	public void setFooter(String footer) {
+	    this.footer = footer;
 	}
 
 	/**

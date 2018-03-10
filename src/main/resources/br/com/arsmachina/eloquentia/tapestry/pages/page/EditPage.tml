@@ -13,6 +13,8 @@
 <!-- 		<input type="textfield" t:type="TextField" t:id="postedBy" t:value="page.postedBy" t:disabled="true" t:mixins="FormGroup"/> -->
 <!-- 		<textarea t:type="TextArea" t:id="content" t:value="page.content" t:mixins="wymeditor/Wymeditor,FormGroup"/> -->
         <textarea t:type="TextArea" t:id="content" t:value="page.content" t:mixins="tynamo/ckeditor,FormGroup"/>
+        <textarea t:type="TextArea" t:id="css" t:value="page.css" t:mixins="FormGroup"/>
+        
 <!-- 		<textarea t:type="TextArea" t:id="content" t:value="page.content" t:mixins="FormGroup"/> -->
 		<input type="submit" id="submit"/>
 	</form>

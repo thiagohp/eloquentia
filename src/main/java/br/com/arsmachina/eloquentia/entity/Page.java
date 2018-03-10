@@ -40,6 +40,8 @@ public class Page implements Article, Serializable {
 	private String teaser;
 	
 	private String content;
+	
+	private String css;
 
 	private Date posted;
 
@@ -97,6 +99,15 @@ public class Page implements Article, Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	@Size(min = 1, max = 100000)
+	public String getCss() {
+		return css;
+	}
+
+	public void setCss(String css) {
+		this.css = css;
 	}
 
 	/**

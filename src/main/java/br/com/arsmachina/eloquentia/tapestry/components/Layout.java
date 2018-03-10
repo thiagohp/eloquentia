@@ -37,7 +37,7 @@ public class Layout {
 
 	/**
 	 * Tag being used to define layout and etc for the website for this request.
-	 * Not required.
+	 * Required.
 	 */
 	@Parameter(required = true, allowNull = false)
 	private Tag tag;
