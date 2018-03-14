@@ -52,6 +52,10 @@ public class TagControllerImpl extends ControllerImpl<Tag, String> implements Ta
 		return tag;
 	}
 	
+	public Tag findByDomain(String name) {
+		return dao.findByDomain(name);
+	}
+	
 	public Tag getMainTag() {
 		return findByName(EloquentiaConstants.MAIN_TAG_NAME);
 	}

@@ -1,7 +1,5 @@
 package br.com.arsmachina.eloquentia.tapestry.pages;
 
-import java.util.Arrays;
-
 import org.apache.tapestry5.EventContext;
 import org.apache.tapestry5.annotations.Cached;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -11,8 +9,6 @@ import br.com.arsmachina.eloquentia.controller.TagController;
 import br.com.arsmachina.eloquentia.controller.UserController;
 import br.com.arsmachina.eloquentia.entity.Page;
 import br.com.arsmachina.eloquentia.entity.Tag;
-import br.com.arsmachina.eloquentia.entity.User;
-import br.com.arsmachina.eloquentia.enums.Role;
 import br.com.arsmachina.eloquentia.tapestry.services.PageActivationContextService;
 
 /**
@@ -120,7 +116,7 @@ public class Index {
 	public String getSiteName() {
 		Tag tag = getTag();
 		final String name;
-		if (tag.isSubdomain()) {
+		if (tag.isSubdomain() || tag.getDomain() != null) {
 			name = tag.getTitle();
 		}
 		else {

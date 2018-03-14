@@ -55,9 +55,12 @@ import br.com.arsmachina.eloquentia.security.ObjectPermissionChecker;
 import br.com.arsmachina.eloquentia.security.PagePermissionChecker;
 import br.com.arsmachina.eloquentia.security.PasswordHasher;
 import br.com.arsmachina.eloquentia.tapestry.rss.TagChannelProvider;
+import br.com.arsmachina.eloquentia.tapestry.urlrewriting.DomainPageLinkTransformer;
+import br.com.arsmachina.eloquentia.tapestry.urlrewriting.DomainURLRewriterRule;
 import br.com.arsmachina.eloquentia.tapestry.urlrewriting.SubdomainPageLinkTransformer;
 import br.com.arsmachina.eloquentia.tapestry.urlrewriting.SubdomainTagLinkTransformer;
 import br.com.arsmachina.eloquentia.tapestry.urlrewriting.SubdomainURLRewriterRule;
+import br.com.arsmachina.eloquentia.tapestry.urlrewriting.TagDomainLinkTransformer;
 import br.com.arsmachina.tapestry_rss.services.ChannelProvider;
 //import br.com.arsmachina.tapestry_wymeditor.services.WymeditorModule;
 
@@ -203,7 +206,8 @@ public class AppModule {
 	 * @param configuration an {@link OrderedConfiguration}.
 	 */
 	public static void contributeURLRewriter(OrderedConfiguration<URLRewriterRule> configuration) {
-		configuration.addInstance("Subomain", SubdomainURLRewriterRule.class, "before:*");
+		configuration.addInstance("Domain", DomainURLRewriterRule.class);
+		configuration.addInstance("Subdomain", SubdomainURLRewriterRule.class, "after:*");
 	}
 	
 	/**
@@ -213,8 +217,10 @@ public class AppModule {
 	@Contribute(PageRenderLinkTransformer.class)
 	@Primary
 	public static void addLinkTransformers(OrderedConfiguration<PageRenderLinkTransformer> configuration) {
-		configuration.addInstance("SubdomainTag", SubdomainTagLinkTransformer.class);
-		configuration.addInstance("SubdomainPage", SubdomainPageLinkTransformer.class, "before:SubdomainTag");
+		configuration.addInstance("TagDomain", TagDomainLinkTransformer.class);
+		configuration.addInstance("DomainPage", DomainPageLinkTransformer.class, "after:TagDomain");
+		configuration.addInstance("SubdomainPage", SubdomainPageLinkTransformer.class, "after:DomainPage");
+		configuration.addInstance("SubdomainTag", SubdomainTagLinkTransformer.class, "after:SubdomainPage");
 	}
 
 	/**

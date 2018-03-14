@@ -37,41 +37,35 @@ import org.apache.tapestry5.services.linktransform.LinkTransformer;
 import org.apache.tapestry5.services.linktransform.PageRenderLinkTransformer;
 
 import br.com.arsmachina.eloquentia.controller.TagController;
-import br.com.arsmachina.eloquentia.entity.Page;
-import br.com.arsmachina.eloquentia.tapestry.services.PageActivationContextService;
+import br.com.arsmachina.eloquentia.entity.Tag;
 
 /**
  * {@link LinkTransformer} that does <code>domain.com/xxx</code> ->  
- * {@link Link} rewritings. <code>yyy.domain.com/xxx</code>, where <code>yyy</code>
- * is the first tag of the <code>xxx</code> page.
+ * {@link Link} rewritings. <code>yyydomain.com/code>, where <code>yyydomain</code>
+ * is the domain of the <code>xxx</code> tag.
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
  * @see SubdomainURLRewriterRule
  */
-public class SubdomainPageLinkTransformer implements PageRenderLinkTransformer {
+public class TagDomainLinkTransformer implements PageRenderLinkTransformer {
 	
 	final private Request request;
 	
 	final private TagController tagController;
 	
-	final private PageActivationContextService pageActivationContextService;
-	
-	final private String hostname;
-	
-	final private boolean enabled;
-	
 	private String port;
-	
+
+	final private boolean enabled;
+
 	/**
 	 * Single constructor of this class.
 	 * 
 	 * @param tagController a {@link TagController}.
 	 * @param hostname the hostname used by the server running Eloquentia.
 	 */
-	public SubdomainPageLinkTransformer(
+	public TagDomainLinkTransformer(
 			final Request request,
 			final TagController tagController,
-			final PageActivationContextService pageActivationContextService,
 			@Inject @Symbol(SymbolConstants.HOSTNAME) final String hostname) {
 		
 		assert request != null;
@@ -80,15 +74,12 @@ public class SubdomainPageLinkTransformer implements PageRenderLinkTransformer {
 		
 		this.request = request;
 		this.tagController = tagController;
-		this.pageActivationContextService = pageActivationContextService;
-		this.hostname = hostname.trim();
-		this.enabled = this.hostname.length() > 0;
-		
+		this.enabled = hostname.length() > 0;		
 	}
 
 	public Link transformPageRenderLink(Link defaultLink, PageRenderRequestParameters parameters) {
 		
-		Link link = null;
+		Link link = defaultLink;
 		final EventContext activationContext = parameters.getActivationContext();
 		
 		if (port == null) {
@@ -96,30 +87,16 @@ public class SubdomainPageLinkTransformer implements PageRenderLinkTransformer {
 			port = portNumber == 80 ? "" : ":" + portNumber;
 		}
 		
-		if (enabled && parameters.getLogicalPageName().equals("Index") && activationContext.getCount() > 0) {
-			
-			final Page page = pageActivationContextService.toPage(activationContext);
-			
-			if (page != null) {
-				
-				final String tagName = page.getFirstTagName();
-				
-				if (tagName != null) {
-					
-					
-					if (tagController.isSubdomain(tagName)) {
+		if (enabled && parameters.getLogicalPageName().equals("Index") && activationContext.getCount() == 0) {
 
-						link = new SimpleLink(
-								String.format("http://%s.%s%s/%s", tagName, hostname, port, page.getUri()));
-
-					}
+			Tag tag = tagController.findByDomain(request.getServerName());
 					
-				}
-				
+			if (tag != null) {
+				link = new SimpleLink(String.format("http://%s%s", tag.getDomain(), port));
 			}
-
+			
 		}
-		
+
 		return link;
 		
 	}

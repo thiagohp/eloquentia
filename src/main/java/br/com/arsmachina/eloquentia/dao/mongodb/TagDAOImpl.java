@@ -43,4 +43,9 @@ public class TagDAOImpl extends AbstractDAOImpl<Tag, String> implements TagDAO {
 		return cursor.hasNext() ? cursor.next() : null;
 	} 
 
+	public Tag findByDomain(String name) {
+		DBCursor<Tag> cursor = getDbCollection().find(DBQuery.is("domain", name));
+		return cursor.hasNext() ? cursor.next() : null;
+	} 
+
 }

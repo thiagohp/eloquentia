@@ -29,7 +29,6 @@ package br.com.arsmachina.eloquentia.tapestry.urlrewriting;
 import org.apache.tapestry5.EventContext;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.services.PageRenderRequestParameters;
 import org.apache.tapestry5.services.Request;
@@ -38,25 +37,24 @@ import org.apache.tapestry5.services.linktransform.PageRenderLinkTransformer;
 
 import br.com.arsmachina.eloquentia.controller.TagController;
 import br.com.arsmachina.eloquentia.entity.Page;
+import br.com.arsmachina.eloquentia.entity.Tag;
 import br.com.arsmachina.eloquentia.tapestry.services.PageActivationContextService;
 
 /**
  * {@link LinkTransformer} that does <code>domain.com/xxx</code> ->  
- * {@link Link} rewritings. <code>yyy.domain.com/xxx</code>, where <code>yyy</code>
- * is the first tag of the <code>xxx</code> page.
+ * {@link Link} rewritings. <code>yyydomain.com/xxx</code>, where <code>yyydomain</code>
+ * is the domain of the first tag of the <code>xxx</code> page.
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
  * @see SubdomainURLRewriterRule
  */
-public class SubdomainPageLinkTransformer implements PageRenderLinkTransformer {
+public class DomainPageLinkTransformer implements PageRenderLinkTransformer {
 	
 	final private Request request;
 	
 	final private TagController tagController;
 	
 	final private PageActivationContextService pageActivationContextService;
-	
-	final private String hostname;
 	
 	final private boolean enabled;
 	
@@ -68,21 +66,19 @@ public class SubdomainPageLinkTransformer implements PageRenderLinkTransformer {
 	 * @param tagController a {@link TagController}.
 	 * @param hostname the hostname used by the server running Eloquentia.
 	 */
-	public SubdomainPageLinkTransformer(
+	public DomainPageLinkTransformer(
 			final Request request,
 			final TagController tagController,
 			final PageActivationContextService pageActivationContextService,
-			@Inject @Symbol(SymbolConstants.HOSTNAME) final String hostname) {
+			@Symbol(SymbolConstants.HOSTNAME) final String hostname) {
 		
 		assert request != null;
 		assert tagController != null;
-		assert hostname != null;
 		
 		this.request = request;
 		this.tagController = tagController;
 		this.pageActivationContextService = pageActivationContextService;
-		this.hostname = hostname.trim();
-		this.enabled = this.hostname.length() > 0;
+		this.enabled = hostname.length() > 0;
 		
 	}
 
@@ -106,12 +102,11 @@ public class SubdomainPageLinkTransformer implements PageRenderLinkTransformer {
 				
 				if (tagName != null) {
 					
+					Tag tag = tagController.findByDomain(request.getServerName());
 					
-					if (tagController.isSubdomain(tagName)) {
-
+					if (tag != null) {
 						link = new SimpleLink(
-								String.format("http://%s.%s%s/%s", tagName, hostname, port, page.getUri()));
-
+								String.format("http://%s%s/%s", tag.getDomain(), port, page.getUri()));
 					}
 					
 				}

@@ -34,5 +34,13 @@ public interface TagController extends Controller<Tag, String> {
 	 * @see Tag#isSubdomain().
 	 */
 	boolean isSubdomain(String tagName);
-	
+
+	/**
+	 * Finds a {@link Tag} by its domain.
+	 * 
+	 * @param domain a {@link String}.
+	 * @return a {@link Tag} or <code>null</code>.
+	 */
+	Tag findByDomain(String domain);
+
 }

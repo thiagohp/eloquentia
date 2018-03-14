@@ -39,6 +39,8 @@ public class Tag {
 	private boolean blog = true;
 	
 	private String footer;
+	
+	private String domain;
 
 	/**
 	 * Returns the internal database id.
@@ -103,6 +105,15 @@ public class Tag {
 		this.subtitle = subtitle;
 	}
 	
+	@Size(min = 1, max = 100)
+	public String getDomain() {
+		return domain;
+	}
+
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+
 	/**
 	 * Links to be generated in the header. 
 	 * @return a {@link List} of {@link Link} instances.

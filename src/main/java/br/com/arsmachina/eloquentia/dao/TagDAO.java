@@ -18,4 +18,12 @@ public interface TagDAO extends DAO<Tag, String> {
 	 */
 	Tag findByName(String name);
 	
+	/**
+	 * Finds a {@link Tag} by its domain.
+	 * 
+	 * @param domain a {@link String}.
+	 * @return a {@link Tag} or <code>null</code>.
+	 */
+	Tag findByDomain(String domain);
+	
 }
