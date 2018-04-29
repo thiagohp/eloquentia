@@ -80,6 +80,12 @@ public class DomainURLRewriterRule implements URLRewriterRule {
 		
 			Tag tag = tagController.findByDomain(serverName);
 			
+			// If exact match not found yet, match [tag domain] to the appropriate
+			// tag even if the requested domain is www.[tag domain]
+			if (tag == null && serverName.toLowerCase().startsWith("www.")) {
+				tag = tagController.findByDomain(serverName.substring(4));
+			}
+			
 			if (tag != null) {
 				final String newServerName = hostname.equals(".") ? "localhost" : hostname;
 				final String newPath = tag.isBlog() ? "/tag/" + tag.getName() : "/" + tag.getName();

@@ -145,7 +145,8 @@ public class AppModule {
 		configuration.add(SymbolConstants.HMAC_PASSPHRASE, "8yhr349p8fy284723084uw-efudwoçierhf3f40v");
 		configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
 		configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,pt,pt_BR");
-		configuration.add(SymbolConstants.APPLICATION_VERSION, "0.0.1-SNAPSHOT");
+		configuration.add(SymbolConstants.APPLICATION_VERSION, "0.0.3-SNAPSHOT");
+		configuration.add(SymbolConstants.ENABLE_PAGELOADING_MASK, "false");
 	}
 
 	/**
