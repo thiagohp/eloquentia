@@ -14,7 +14,8 @@
 			<input type="textfield" t:type="Checkbox" t:id="subdomain" t:value="tag.subdomain" t:mixins="FormGroup"/>
 			<input type="textfield" t:type="Checkbox" t:id="blog" t:value="tag.blog" t:mixins="FormGroup"/>
 			<textarea t:type="TextArea" t:id="css" t:value="tag.css" t:mixins="FormGroup"/>
-            <textarea t:type="TextArea" t:id="footer" t:value="tag.footer" t:mixins="tynamo/ckeditor,FormGroup"/>
+<!--             <textarea t:type="TextArea" t:id="footer" t:value="tag.footer" t:mixins="tynamo/ckeditor,FormGroup"/> -->
+            <textarea t:type="TextArea" t:id="content" t:value="tag.footer" t:mixins="wymeditor/Wymeditor,FormGroup"/>
 			<input type="submit" id="submit"/>
 		</form>
 	</div>

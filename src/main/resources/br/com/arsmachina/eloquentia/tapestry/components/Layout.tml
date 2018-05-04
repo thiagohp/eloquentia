@@ -18,8 +18,9 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="#" t:type="PageLink" t:page="tag/Index" t:context="mainTag.name"
-						class="navbar-brand">${siteName}</a>
+<!-- 					<a href="#" t:type="PageLink" t:page="tag/Index" t:context="tag.name" -->
+<!-- 						class="navbar-brand">${siteName}</a> -->
+					<a href="/" class="navbar-brand">${siteName}</a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
@@ -95,10 +96,10 @@
 		<div class="container">
 			<header class="container" role="banner">
 				<div class="page-header" t:type="If" t:test="title">
-					<h1>${tag.title}<small t:type="If" t:test="subtitle"> ${subtitle}</small></h1>
+					<h1><span>${tag.title}<small t:type="If" t:test="subtitle"> ${subtitle}</small></span></h1>
 				</div>
 				<div class="page-header" t:type="If" t:test="!title">
-					<h2>${tag.title}<small t:type="If" t:test="subtitle"> ${subtitle}</small></h2>
+					<h2><span>${tag.title}<small t:type="If" t:test="subtitle"> ${subtitle}</small></span></h2>
 				</div>
 			</header>
 			<main class="container">
@@ -106,9 +107,8 @@
 			</main>
 		</div>
 		<footer>
-
-            <div t:type="If" t:test="mainTag.footer" class="row footer-tag">		
-				<t:OutputRaw value="mainTag.footer" />
+            <div t:type="If" t:test="tag.footer" class="row footer-tag">		
+				<t:OutputRaw value="tag.footer" />
 			</div>
 		
 			<div class="row">

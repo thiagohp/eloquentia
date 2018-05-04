@@ -2,7 +2,8 @@
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns="http://www.w3.org/1999/xhtml"
 	id="${clientId}" t:type="Any" t:mixins="AddCss, syntax-highlighter/SyntaxHighlighter" 
-	t:tags="page.tags" t:page="page" t:AddCss.enable="!teaser" t:SyntaxHighlighter.enable="enableSyntaxHighlighter">
+	t:tags="page.tags" t:page="page" t:AddCss.enable="!teaser" t:SyntaxHighlighter.enable="enableSyntaxHighlighter"
+	data-hostaname="${hostname}">
 	
 	<header t:type="If" t:test="blog">
 		<h2><a href="#" t:type="PageLink" t:page="Index" t:context="context">${page.title}</a></h2>

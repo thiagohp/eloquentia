@@ -3,10 +3,13 @@ package br.com.arsmachina.eloquentia.tapestry.components;
 import java.util.Locale;
 
 import org.apache.tapestry5.ClientElement;
+import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.annotations.Cached;
 import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.annotations.Symbol;
 
 import br.com.arsmachina.eloquentia.EloquentiaConstants;
 import br.com.arsmachina.eloquentia.controller.PageController;
@@ -51,6 +54,11 @@ public class ViewPage implements ClientElement {
 	
 	@Inject
 	private Messages messages;
+	
+	@Property
+	@Inject
+	@Symbol(SymbolConstants.HOSTNAME)
+	private String hostname;
 
 	public Page getPage() {
 		return page;
