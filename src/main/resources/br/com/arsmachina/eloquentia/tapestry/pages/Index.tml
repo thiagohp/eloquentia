@@ -3,6 +3,7 @@
 	t:tag="tag"
 	t:siteName="siteName"
 	t:title="title"
+	t:subtitle="subtitle"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
 	xmlns="http://www.w3.org/1999/xhtml"
 	class="${cssClass}">

@@ -37,6 +37,8 @@ public class Page implements Article, Serializable {
 
 	private String title;
 
+	private String subtitle;
+
 	private String teaser;
 	
 	private String content;
@@ -91,6 +93,15 @@ public class Page implements Article, Serializable {
 		this.title = title;
 	}
 
+	@Size(max = 140)
+	public String getSubtitle() {
+		return subtitle;
+	}
+
+	public void setSubtitle(String subtitle) {
+		this.subtitle = title;
+	}
+	
 	@NotNull
 	@Size(min = 1, max = 100000)
 	public String getContent() {

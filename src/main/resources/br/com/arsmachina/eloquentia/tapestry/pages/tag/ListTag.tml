@@ -3,7 +3,7 @@
 	xmlns:p="tapestry:parameter"
 	t:siteName="literal:Eloquentia"
 	t:title="literal:List tags">
-	<table t:type="Grid" t:source="source" t:row="tag" t:exclude="id, links">
+	<table t:type="Grid" t:source="source" t:row="tag" t:exclude="id, links, css, footer">
 		<p:nameCell>
 			<a href="#" t:type="PageLink" t:page="tag/edit" t:context="tag.name">${tag.name}</a>
 		</p:nameCell>

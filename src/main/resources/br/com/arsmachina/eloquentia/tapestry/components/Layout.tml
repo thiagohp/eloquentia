@@ -95,12 +95,12 @@
 		<div class="after-navbar"></div>
 		<div class="container">
 			<header class="container" role="banner">
-				<div class="page-header" t:type="If" t:test="title">
-					<h1><span>${tag.title}<small t:type="If" t:test="subtitle"> ${subtitle}</small></span></h1>
+				<div class="page-header" t:type="If" t:test="tag.blog">
+					<h1><span>${tag.title} <small t:type="If" t:test="subtitle" class="subtitle">${subtitle}</small></span></h1>
 				</div>
-				<div class="page-header" t:type="If" t:test="!title">
-					<h2><span>${tag.title}<small t:type="If" t:test="subtitle"> ${subtitle}</small></span></h2>
-				</div>
+<!-- 				<div class="page-header" t:type="If" t:test="!tag.blog"> -->
+<!-- 					<h2><span>${title} <small t:type="If" t:test="subtitle">${subtitle}</small></span></h2> -->
+<!-- 				</div> -->
 			</header>
 			<main class="container">
 				<t:body/>

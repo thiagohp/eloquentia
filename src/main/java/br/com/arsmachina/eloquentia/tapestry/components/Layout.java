@@ -36,6 +36,12 @@ public class Layout {
 	private String title;
 
 	/**
+	 * Subtitle. Not required.
+	 */
+	@Parameter
+	private String subtitle;
+
+	/**
 	 * Tag being used to define layout and etc for the website for this request.
 	 * Required.
 	 */

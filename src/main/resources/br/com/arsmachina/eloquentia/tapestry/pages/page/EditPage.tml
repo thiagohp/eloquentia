@@ -7,6 +7,7 @@
 		<div t:type="Alerts"/>
 		<input type="textfield" t:type="TextField" t:id="uri" t:value="page.uri" t:mixins="FormGroup"/>
 		<input type="textfield" t:type="TextField" t:id="title" t:value="page.title" t:mixins="FormGroup"/>
+        <input type="textfield" t:type="TextField" t:id="subtitle" t:value="page.subtitle" t:mixins="FormGroup"/>
 		<input type="textfield" t:type="TextField" t:id="teaser" t:value="page.teaser" t:mixins="FormGroup"/>
 		<input type="textfield" t:type="TextField" t:id="posted" t:value="page.posted" t:translate="translate:datetime" t:mixins="FormGroup"/>
 		<input type="textfield" t:type="TextField" t:id="tags" t:value="page.tags" t:translate="translate:tags" t:mixins="FormGroup"/>

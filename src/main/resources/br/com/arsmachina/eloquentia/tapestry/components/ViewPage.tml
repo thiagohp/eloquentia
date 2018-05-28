@@ -9,6 +9,10 @@
 		<h2><a href="#" t:type="PageLink" t:page="Index" t:context="context">${page.title}</a></h2>
 		<div class="page-info" t:type="ArticleHeader" t:article="page"></div>
 	</header>
+
+    <header t:type="If" t:test="!blog">
+        <h1>${page.title} <small t:type="If" t:test="page.subtitle">${page.subtitle}</small></h1>
+    </header>
 	
 	<div class="teaser" t:type="If" t:test="teaser">
 		<div t:type="OutputRaw" t:value="page.teaser"/>
