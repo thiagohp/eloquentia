@@ -99,7 +99,7 @@ public class Page implements Article, Serializable {
 	}
 
 	public void setSubtitle(String subtitle) {
-		this.subtitle = title;
+		this.subtitle = subtitle;
 	}
 	
 	@NotNull
