@@ -26,7 +26,10 @@ import br.com.arsmachina.eloquentia.tapestry.services.UserService;
  * 
  * @author Thiago H. de Paula Figueiredo (http://machina.com.br/thiago)
  */
-@Import(stack = "core", stylesheet = { "classpath:/META-INF/assets/eloquentia/css/eloquentia.css" })
+@Import(stack = "core", stylesheet = { "classpath:/META-INF/assets/eloquentia/css/eloquentia.css" },
+library = {
+		"classpath:/META-INF/assets/tapestry5/bootstrap/js/transition.js",
+		"classpath:/META-INF/assets/tapestry5/bootstrap/js/collapse.js"})
 public class Layout {
 	
 	/**

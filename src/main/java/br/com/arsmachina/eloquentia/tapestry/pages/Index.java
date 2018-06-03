@@ -45,6 +45,16 @@ public class Index {
 //		userController.save(user);
 		
 		page = pageActivationContextService.toPage(context);
+		if (page != null) {
+			final String firstTagName = page.getFirstTagName();
+			if (firstTagName != null) {
+				tag = tagController.findByName(firstTagName);
+			}
+		}
+		
+		if (tag == null) {
+			tag = getMainTag();
+		}
 		
 		// if there's no page directly matching this context and the current tag isn't a blog,
 		// we try to find the home page for that tag, which is a page whose URI is the same as the
@@ -53,13 +63,6 @@ public class Index {
 			page = pageController.findByUri(tag.getName());
 		}
 		
-		final String firstTagName = page.getFirstTagName();
-		if (firstTagName != null) {
-			tag = tagController.findByName(firstTagName);
-		}
-		if (tag == null) {
-			tag = getMainTag();
-		}
 
 		return page != null || context.getCount() < 1 ? null : Index.class;
 		
